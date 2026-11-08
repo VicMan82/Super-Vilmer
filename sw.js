@@ -1,15 +1,15 @@
 // Super-Vilmer web app: works offline after the first visit.
 // The game page is fetched fresh when online (so updates arrive) and taken from the saved copy when offline.
-const CACHE = "super-vilmer-v6";
+const CACHE = "super-vilmer-v7";
 const FILES = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/icon-maskable-512.png",
-  "./icons/apple-touch-icon.png",
-  "./icons/favicon-64.png",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./icon-maskable-512.png",
+  "./apple-touch-icon.png",
+  "./favicon-64.png",
 ];
 
 self.addEventListener("install", event => {
