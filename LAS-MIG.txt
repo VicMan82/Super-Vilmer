@@ -1,0 +1,63 @@
+SUPER-VILMER SOM APP PÅ IPADEN
+==============================
+
+Mappen innehåller hela spelet som en webbapp:
+  index.html            själva spelet
+  manifest.webmanifest  appens namn, färger och ikon
+  sw.js                 sparar spelet på iPaden så att det går utan internet
+  icons/                Super-Vilmer-ikonerna
+
+Spelet behöver ligga på en egen webbadress en gång. Det gratis och enklaste
+sättet är GitHub Pages. Gör steg 1–6 på datorn (gärna i Chrome eller Edge).
+
+
+DEL 1: LÄGG UPP SPELET (på datorn, en gång)
+-------------------------------------------
+1. Packa upp zip-filen. Du får mappen "super-vilmer".
+
+2. Gå till github.com och skapa ett gratis konto om du inte har ett.
+
+3. Klicka på "+" uppe till höger och välj "New repository".
+   - Repository name: super-vilmer
+   - Välj "Public"
+   - Klicka "Create repository".
+
+4. På sidan som kommer upp: klicka på länken "uploading an existing file".
+   Öppna mappen super-vilmer och dra in ALLT som ligger i den
+   (index.html, manifest.webmanifest, sw.js, LAS-MIG.txt och mappen icons).
+   Dra inte in själva mappen super-vilmer, bara innehållet.
+   Klicka "Commit changes".
+
+5. Gå till "Settings" (överst i repot) och sedan "Pages" i vänstermenyn.
+   Under "Build and deployment":
+   - Source: "Deploy from a branch"
+   - Branch: "main" och "/ (root)"
+   - Klicka "Save".
+
+6. Vänta 1–2 minuter och ladda om sidan. Överst på Pages-sidan står adressen,
+   ungefär så här:  https://DITT-GITHUBNAMN.github.io/super-vilmer/
+   Öppna den och kontrollera att spelet startar.
+
+
+DEL 2: INSTALLERA PÅ VILMERS IPAD
+---------------------------------
+7. Öppna adressen från steg 6 i Safari på iPaden.
+
+8. Tryck på dela-knappen (eller de tre prickarna vid adressfältet och sedan Dela)
+   och välj "Lägg till på hemskärmen".
+   Låt "Öppna som webbapp" vara påslaget. Tryck "Lägg till".
+
+9. Öppna appen från hemskärmen en gång när iPaden har internet.
+   Efter det fungerar spelet även utan internet.
+
+
+BRA ATT VETA
+------------
+- Framsteg: appen sparar stjärnor, nuggetpengar och köp på iPaden. Den börjar
+  från noll, eftersom den inte delar sparning med länken eller Claude-appen.
+- Uppdateringar: när du får en ny version av spelet laddar du upp den nya
+  index.html i repot ("Add file" > "Upload files", ersätt den gamla och klicka
+  "Commit changes"). Appen hämtar den nya versionen nästa gång den öppnas med
+  internet.
+- Offentligt: repot och adressen är öppna för alla som känner till dem, precis
+  som den delade länken. Det enda personliga i spelet är namnet Vilmer.
