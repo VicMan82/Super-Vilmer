@@ -1,6 +1,6 @@
 // Super-Vilmer web app: works offline after the first visit.
 // The game page is fetched fresh when online (so updates arrive) and taken from the saved copy when offline.
-const CACHE = "super-vilmer-v7";
+const CACHE = "super-vilmer-v8";
 const FILES = [
   "./",
   "./index.html",
