@@ -1,6 +1,6 @@
 // Super-Vilmer web app: works offline after the first visit.
 // Each page is fetched fresh when online (so updates arrive) and taken from its own saved copy when offline.
-const CACHE = "super-vilmer-v9";
+const CACHE = "super-vilmer-v10";
 const FILES = [
   "./",
   "./index.html",
@@ -11,9 +11,23 @@ const FILES = [
   "./apple-touch-icon.png",
   "./favicon-64.png",
 ];
+// The 3D game is saved too, so both games work offline whichever one is opened first.
+// Each is added on its own: a missing file is skipped and never stops the original game from installing.
+const EXTRA = [
+  "./3d.html",
+  "./manifest-3d.webmanifest",
+  "./icon-3d-192.png",
+  "./icon-3d-512.png",
+  "./icon-3d-maskable-512.png",
+  "./apple-touch-icon-3d.png",
+];
 
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));
+  event.waitUntil(
+    caches.open(CACHE)
+      .then(c => c.addAll(FILES).then(() => Promise.all(EXTRA.map(f => c.add(f).catch(() => {})))))
+      .then(() => self.skipWaiting())
+  );
 });
 
 self.addEventListener("activate", event => {
