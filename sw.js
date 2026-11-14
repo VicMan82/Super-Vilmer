@@ -1,6 +1,6 @@
 // Super-Vilmer web app: works offline after the first visit.
-// The game page is fetched fresh when online (so updates arrive) and taken from the saved copy when offline.
-const CACHE = "super-vilmer-v8";
+// Each page is fetched fresh when online (so updates arrive) and taken from its own saved copy when offline.
+const CACHE = "super-vilmer-v9";
 const FILES = [
   "./",
   "./index.html",
@@ -28,10 +28,16 @@ self.addEventListener("fetch", event => {
   const req = event.request;
   if (req.method !== "GET") return;
   if (req.mode === "navigate") {
+    // The original game is saved as index.html. Any other page in the folder (such as 3d.html) is saved
+    // under its own address, so opening it never replaces the original game's offline copy.
+    const path = new URL(req.url).pathname;
+    const home = new URL("./", self.location).pathname;
+    const isGame = path === home || path === home + "index.html";
+    const key = isGame ? "./index.html" : path;
     event.respondWith(
       fetch(req)
-        .then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put("./index.html", copy)); return res; })
-        .catch(() => caches.match("./index.html").then(r => r || caches.match("./")))
+        .then(res => { if (res.ok) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(key, copy)); } return res; })
+        .catch(() => caches.match(key).then(r => r || (isGame ? caches.match("./") : Response.error())))
     );
     return;
   }
